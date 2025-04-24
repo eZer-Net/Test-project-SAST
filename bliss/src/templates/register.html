@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            display: inline-block;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="password"], input[type="number"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .captcha img {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Регистрация</h1>
+    <form action="/register" method="post">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" minlength="9" required>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" minlength="9" required>
+
+        <div class="captcha">
+            <label for="captcha_answer">Введите результат:</label>
+            <img src="data:image/png;base64,{{.captcha_base64}}" alt="Captcha">
+            <input type="number" id="captcha_answer" name="captcha_answer" required>
+        </div>
+
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+    <p>Уже есть аккаунт? <a href="/">Войдите</a>.</p>
+</body>
+</html>

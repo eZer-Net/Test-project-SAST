@@ -1,0 +1,17 @@
+version: "2.4"
+services:
+  finance:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - data:/home/task/data
+    environment:
+      - SESSION_KEY=XXXXXXXXXXXXXXXXXXXXXXX
+    stop_grace_period: 0s
+    restart: unless-stopped
+    pids_limit: 2000
+    mem_limit: 512m
+
+volumes:
+  data:

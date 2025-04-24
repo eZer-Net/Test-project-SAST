@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 {
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        .balance {
+            font-size: 1.2em;
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            display: inline-block;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="number"], select {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #exchange-info {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .flag-button {
+            background-color: #dc3545;
+            margin-top: 20px;
+        }
+        .flag-button:hover {
+            background-color: #b02a37;
+        }
+    </style>
+    <script>
+        var rate = {{.rate}};
+
+        function updateExchangeInfo() {
+            var amount = document.getElementById("amount").value;
+            var direction = document.getElementById("direction").value;
+
+            if (isNaN(amount) || amount <= 0) {
+                document.getElementById("exchange-info").innerText = "Введите корректное количество.";
+                return;
+            }
+
+            var result = "";
+            if (direction === "min_to_baks") {
+                var minsTaken = amount * rate;
+                result = `Вы получите ${amount} ₡ за ${minsTaken} мин. медитации.`;
+            } else if (direction === "baks_to_min") {
+                var minsReceived = amount * rate;
+                result = `Вы получите ${minsReceived} мин. медитации за ${amount} ₡.`;
+            }
+            
+            document.getElementById("exchange-info").innerText = result;
+        }
+
+        window.onload = function () {
+            document.getElementById("amount").addEventListener("input", updateExchangeInfo);
+            document.getElementById("direction").addEventListener("change", updateExchangeInfo);
+            document.getElementById("rate_span").innerHTML=rate;
+        };
+    </script>
+</head>
+<body>
+    <h1>Добро пожаловать, {{.username}}!</h1>
+    <div class="balance">
+        <p><strong>Ваш баланс:</strong></p>
+        <ul style="list-style: none; padding: 0;">
+            <li>Минуты медитации: {{.user.BalanceMinutes}}</li>
+            <li>Капибаксы: {{.user.BalanceKapibaks}}</li>
+            <li>Осталось свободных минут: {{.user.FreeMinutesRest}}</li>
+        </ul>
+    </div>
+    <h2>Покупка минут медитации</h2>
+    <form action="/exchange" method="post">
+        <label for="amount">Количество капибаксов:</label>
+        <input type="number" id="amount" name="amount" required>
+
+        <label for="direction">Операция:</label>
+        <select id="direction" name="direction" required>
+            <option value="baks_to_min">Покупка минут</option>
+            <option value="min_to_baks">Отмена минут</option>
+        </select>
+        <div>Курс: 1 капибакс = <span id="rate_span">?</span> мин. медитации</div>
+        <button type="submit">Провести</button>
+    </form>
+    <p id="exchange-info">Введите количество для расчета.</p>
+
+</body>
+</html>

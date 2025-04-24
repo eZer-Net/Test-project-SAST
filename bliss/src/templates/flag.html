@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все минуты выкуплены!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #28a745;
+        }
+        .flag {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #dc3545;
+            margin: 20px 0;
+        }
+        .balance {
+            font-size: 1.2em;
+            color: #007bff;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Поздравляем, {{.username}}!</h1>
+    <h3>Вы успешно купили 20 лет медитации, для входа в медитацию прочитайте строчку<h3>
+    <p style="font-size:6pt">(внимание, прерывание возможно только после окончания всего времени)</p>
+    <div class="flag">{{.flag}}</div>
+    <p class="balance">Ваш текущий баланс:</p>
+    <ul>
+        <li>Минуты медитации: {{.balance.BalanceMinutes}}</li>
+        <li>Капибаксы: {{.balance.BalanceKapibaks}}</li>
+    </ul>
+    <a href="/"><button>Вернуться на главную</button></a>
+</body>
+</html>

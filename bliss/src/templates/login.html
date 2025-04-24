@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 {
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            display: inline-block;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            width: 300px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        p {
+            margin-top: 20px;
+            font-size: 1em;
+            color: #555;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Купи минуты медитации сейчас, и медитируй потом</h1>
+    <h2>Сегодня медитация, завтра прокрастинация</h2>
+    <h3>Вход в систему</h3>
+    <form action="/login" method="post">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" minlength="9" required>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" minlength="9" required>
+
+        <button type="submit">Войти</button>
+    </form>
+    <p>Еще нет аккаунта? <a href="/register">Зарегистрируйтесь</a>.</p>
+</body>
+</html>
